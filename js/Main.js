@@ -10,6 +10,7 @@ const pc = new Sprite({vx:10});
 
 cena1.adicionar(pc);
 cena1.adicionar(en1);
+cena1.adicionar(new Sprite({y:40,w:30, color: "red"}));
 cena1.iniciar();
 
 document.addEventListener("keydown", (e) =>
