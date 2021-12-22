@@ -24,7 +24,18 @@ export default class Sprite
     passo(dt)
     {
         this.x = this.x + this.vx * dt;
-        this.y = this.y+ this.vy * dt;
+        this.y = this.y + this.vy * dt;
+    }
+
+    colidiumCom(outro)
+    {
+        return !
+            (
+                (this.x > outro.x + outro.w) ||
+                (this.x + this.w < outro.x) ||
+                (this.y > outro.y + outro.h) ||
+                (this.y + this.h < outro.y)
+            );
     }
 
 }
