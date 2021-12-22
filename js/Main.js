@@ -10,6 +10,6 @@ const pc = new Sprite({});
 
 cena1.adicionar(pc);
 cena1.adicionar(en1);
-cena1.desenhar();
+cena1.quadro(0);
 
 
