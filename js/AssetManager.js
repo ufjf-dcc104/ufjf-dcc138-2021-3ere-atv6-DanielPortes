@@ -32,4 +32,9 @@ export default class AssetManager
         }
         return "Nada a carregar";
     }
+
+    acabou()
+    {
+        return this.carregadas === this.aCarregar;
+    }
 };
