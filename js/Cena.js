@@ -1,6 +1,6 @@
 export default class Cena
 {
-    constructor(canvas)
+    constructor(canvas, assets = null)
     {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
@@ -9,6 +9,7 @@ export default class Cena
         this.t0 = 0;
         this.dt = 0;
         this.idAnim = null;
+        this.assets = assets;
     }
 
     desenhar()
@@ -20,6 +21,10 @@ export default class Cena
             const sprite = this.sprites[i];
             sprite.desenhar(this.ctx);
         }
+        this.ctx.fillStyle = "yellow";
+        this.ctx.fillText(this.assets?.progresso(),10,20);
+
+
     }
 
     adicionar(sprite)
