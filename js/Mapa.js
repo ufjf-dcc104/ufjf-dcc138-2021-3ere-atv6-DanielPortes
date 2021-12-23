@@ -21,7 +21,6 @@ export default class Mapa
     {
         for (let l = 0; l < this.LINHAS; l++)
         {
-            this.titles[l] = [];
             for (let c = 0; c < this.COLUNAS; c++)
             {
                 switch (this.titles[l][c])
@@ -32,9 +31,8 @@ export default class Mapa
                         ctx.strokeStyle = "black";
                         break;
                     case 2:
-                        ctx.fillStyle = "white";
+                        ctx.fillStyle = "darkgreen";
                         ctx.lineWidth = 1;
-x
                         ctx.strokeStyle = "orange";
                         break;
                     default:
