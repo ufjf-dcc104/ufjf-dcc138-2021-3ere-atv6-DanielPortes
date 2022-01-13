@@ -41,8 +41,7 @@ export default class Sprite
 
     colidiumCom(outro)
     {
-        return !
-            (
+        return !(
                 (this.x - this.w / 2 > outro.x + outro.w / 2) ||
                 (this.x + this.w / 2 < outro.x - outro.w / 2) ||
                 (this.y - this.h / 2 > outro.y + outro.h / 2) ||
@@ -61,7 +60,7 @@ export default class Sprite
         this.aplicaRestricoesBaixo(this.mx - 1, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
-        this.aplicaRestricoesCima(this.mx - 1, this.my + 1);
+        this.aplicaRestricoesCima(this.mx - 1, this.my - 1);
         this.aplicaRestricoesCima(this.mx, this.my - 1);
         this.aplicaRestricoesCima(this.mx + 1, this.my - 1);
     }
@@ -153,8 +152,7 @@ export default class Sprite
         {
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
-                const title =
-                    {
+                const title ={
                         x: pmx * SIZE + SIZE / 2,
                         y: pmy * SIZE + SIZE / 2,
                         w: SIZE,
@@ -165,7 +163,7 @@ export default class Sprite
                 if (this.colidiumCom(title))
                 {
                     this.vy = 0;
-                    this.y = title.y - title.h / 2 - this.h / 2 - 1
+                    this.y = title.y + title.h / 2 + this.h / 2 - 1
                 }
             }
 
