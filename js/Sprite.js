@@ -52,19 +52,26 @@ export default class Sprite
 
     aplicaRestricoes(dt)
     {
-        this.aplicaRestricoesDireita(dt);
-        this.aplicaRestricoesEsquerda(dt);
-        this.aplicaRestricoesCima(dt);
-        this.aplicaRestricoesBaixo(dt);
+        this.aplicaRestricoesDireita(this.mx + 1, this.my - 1);
+        this.aplicaRestricoesDireita(this.mx + 1, this.my);
+        this.aplicaRestricoesDireita(this.mx + 1, this.my + 1);
+        this.aplicaRestricoesEsquerda(this.mx - 1, this.my - 1);
+        this.aplicaRestricoesEsquerda(this.mx - 1, this.my);
+        this.aplicaRestricoesEsquerda(this.mx - 1, this.my + 1);
+        this.aplicaRestricoesBaixo(this.mx - 1, this.my + 1);
+        this.aplicaRestricoesBaixo(this.mx, this.my + 1);
+        this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
+        this.aplicaRestricoesCima(this.mx - 1, this.my + 1);
+        this.aplicaRestricoesCima(this.mx, this.my - 1);
+        this.aplicaRestricoesCima(this.mx + 1, this.my - 1);
     }
 
-    aplicaRestricoesDireita(dt)
+
+    aplicaRestricoesDireita(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx > 0)
         {
-            const pmx = this.mx + 1;
-            const pmy = this.my;
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
                 const title =
@@ -87,15 +94,11 @@ export default class Sprite
     }
 
 
-
-
-    aplicaRestricoesEsquerda(dt)
+    aplicaRestricoesEsquerda(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx < 0)
         {
-            const pmx = this.mx - 1;
-            const pmy = this.my;
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
                 const title =
@@ -117,13 +120,11 @@ export default class Sprite
         }
     }
 
-    aplicaRestricoesBaixo(dt)
+    aplicaRestricoesBaixo(pmx, pmy)
     {
         if (this.vy > 0)
         {
             const SIZE = this.cena.mapa.SIZE;
-            const pmx = this.mx;
-            const pmy = this.my + 1;
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
                 const title =
@@ -144,13 +145,12 @@ export default class Sprite
 
         }
     }
-    aplicaRestricoesCima(dt)
+
+    aplicaRestricoesCima(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE;
         if (this.vy < 0)
         {
-            const pmx = this.mx;
-            const pmy = this.my - 1;
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
                 const title =
