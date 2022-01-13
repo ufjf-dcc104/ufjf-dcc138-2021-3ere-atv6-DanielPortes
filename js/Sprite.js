@@ -52,6 +52,12 @@ export default class Sprite
 
     aplicaRestricoes(dt)
     {
+        this.aplicaRestricoesDireita(dt);
+        this.aplicaRestricoesEsquerda(dt);
+    }
+
+    aplicaRestricoesDireita(dt)
+    {
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx > 0)
         {
@@ -67,11 +73,39 @@ export default class Sprite
                         h: SIZE
                     };
                 this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(title.x  - SIZE / 2, title.y - SIZE / 2 , SIZE, SIZE);
+                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
                 if (this.colidiumCom(title))
                 {
                     this.vx = 0;
                     this.x = title.x - title.w / 2 - this.w / 2 - 1
+                }
+            }
+
+        }
+    }
+
+    aplicaRestricoesEsquerda(dt)
+    {
+        const SIZE = this.cena.mapa.SIZE;
+        if (this.vx < 0)
+        {
+            const pmx = this.mx - 1;
+            const pmy = this.my;
+            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            {
+                const title =
+                    {
+                        x: pmx * SIZE + SIZE / 2,
+                        y: pmy * SIZE + SIZE / 2,
+                        w: SIZE,
+                        h: SIZE
+                    };
+                this.cena.ctx.strokeStyle = "white";
+                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(title))
+                {
+                    this.vx = 0;
+                    this.x = title.x + title.w / 2 + this.w / 2 + 1
                 }
             }
 
