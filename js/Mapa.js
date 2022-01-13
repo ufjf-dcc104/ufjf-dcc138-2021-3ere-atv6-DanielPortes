@@ -39,7 +39,6 @@ export default class Mapa
                         ctx.fillStyle = "black";
                         ctx.lineWidth = 1;
                         ctx.strokeStyle = "grey";
-                        break;
                 }
                 ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                 ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
