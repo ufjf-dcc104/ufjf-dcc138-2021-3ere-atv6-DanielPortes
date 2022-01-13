@@ -54,6 +54,8 @@ export default class Sprite
     {
         this.aplicaRestricoesDireita(dt);
         this.aplicaRestricoesEsquerda(dt);
+        this.aplicaRestricoesCima(dt);
+        this.aplicaRestricoesBaixo(dt);
     }
 
     aplicaRestricoesDireita(dt)
@@ -84,6 +86,9 @@ export default class Sprite
         }
     }
 
+
+
+
     aplicaRestricoesEsquerda(dt)
     {
         const SIZE = this.cena.mapa.SIZE;
@@ -106,6 +111,61 @@ export default class Sprite
                 {
                     this.vx = 0;
                     this.x = title.x + title.w / 2 + this.w / 2 + 1
+                }
+            }
+
+        }
+    }
+
+    aplicaRestricoesBaixo(dt)
+    {
+        if (this.vy > 0)
+        {
+            const SIZE = this.cena.mapa.SIZE;
+            const pmx = this.mx;
+            const pmy = this.my + 1;
+            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            {
+                const title =
+                    {
+                        x: pmx * SIZE + SIZE / 2,
+                        y: pmy * SIZE + SIZE / 2,
+                        w: SIZE,
+                        h: SIZE
+                    };
+                this.cena.ctx.strokeStyle = "white";
+                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(title))
+                {
+                    this.vy = 0;
+                    this.y = title.y - title.h / 2 - this.h / 2 - 1
+                }
+            }
+
+        }
+    }
+    aplicaRestricoesCima(dt)
+    {
+        const SIZE = this.cena.mapa.SIZE;
+        if (this.vy < 0)
+        {
+            const pmx = this.mx;
+            const pmy = this.my - 1;
+            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            {
+                const title =
+                    {
+                        x: pmx * SIZE + SIZE / 2,
+                        y: pmy * SIZE + SIZE / 2,
+                        w: SIZE,
+                        h: SIZE
+                    };
+                this.cena.ctx.strokeStyle = "white";
+                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(title))
+                {
+                    this.vy = 0;
+                    this.y = title.y - title.h / 2 - this.h / 2 - 1
                 }
             }
 
