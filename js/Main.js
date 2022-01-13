@@ -1,11 +1,11 @@
 import Cena from "./Cena.js";
 import Sprite from "./Sprite.js";
 import AssetManager from "./AssetManager.js";
-//import Mixer from "./Mixer.js";
+import Mixer from "./Mixer.js";
 import Mapa from "./Mapa.js";
 import modeloMapa1 from "../maps/mapa1.js";
 
-//const mixer = Mixer(10);
+const mixer = new Mixer(10);
 // const assets = new AssetManager(mixer);
 const assets = new AssetManager();
 
@@ -45,10 +45,10 @@ document.addEventListener("keydown", (e) =>
             cena1.parar();
             break;
         case "c":
-            assets.audio("moeda").play();
+            mixer.play(assets.audio("moeda"));
             break;
         case "b":
-            assets.audio("boom").play();
+            mixer.play(assets.audio("boom"));
             break;
     }
 });
