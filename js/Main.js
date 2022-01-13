@@ -6,8 +6,8 @@ import Mapa from "./Mapa.js";
 import modeloMapa1 from "../maps/mapa1.js";
 
 const mixer = new Mixer(10);
-// const assets = new AssetManager(mixer);
-const assets = new AssetManager();
+const assets = new AssetManager(mixer);
+// const assets = new AssetManager();
 
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto", "assets/skelly.png");
@@ -45,10 +45,10 @@ document.addEventListener("keydown", (e) =>
             cena1.parar();
             break;
         case "c":
-            mixer.play(assets.audio("moeda"));
+            assets.play("moeda");
             break;
         case "b":
-            mixer.play(assets.audio("boom"));
+            assets.play("boom");
             break;
     }
 });
