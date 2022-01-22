@@ -4,7 +4,9 @@ export default class Sprite
                     x = 100, y = 100,
                     w = 20, h = 20,
                     color = "white", vx = 0,
-                    vy = 0
+                    vy = 0, controlar = () =>
+        {
+        }
                 } = {})
     {
         this.x = x;
@@ -17,6 +19,7 @@ export default class Sprite
         this.cena = null;
         this.mx = 0;
         this.my = 0;
+        this.controlar = controlar
     }
 
     desenhar(ctx)
@@ -33,7 +36,7 @@ export default class Sprite
 
     controlar(dt)
     {
-        
+
     }
 
     mover(dt)
