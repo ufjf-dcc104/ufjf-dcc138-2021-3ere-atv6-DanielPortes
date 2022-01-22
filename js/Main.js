@@ -17,8 +17,8 @@ assets.carregaAudio("moeda", "assets/coin.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
-canvas.width = 14 * 32;
-canvas.height = 10 * 32;
+canvas.width = 20 * 32;
+canvas.height = 16 * 32;
 
 input.configurarTeclado(
     {
@@ -69,10 +69,11 @@ function perseguePC(dt)
     this.vy = 25 * Math.sign(pc.y - this.y);
 }
 
-const en1 = new Sprite({x: 360, vx: -10, color: "red", controlar: perseguePC});
+const en1 = new Sprite({x: 360, y: 300, vx: -10, color: "red", controlar: perseguePC});
 cena1.adicionar(en1);
-cena1.adicionar(new Sprite({x: 115, y: 70, vy: 10, color: "red", controlar: perseguePC}));
-cena1.adicionar(new Sprite({x: 115, y: 160, vy: -10, color: "red", controlar: perseguePC}));
+cena1.adicionar(new Sprite({x: 550, y: 400, vy: 10, color: "red", controlar: perseguePC}));
+cena1.adicionar(new Sprite({x: 555, y: 160, vy: -10, color: "red", controlar: perseguePC}));
+cena1.adicionar(new Sprite({x: 200, y: 450, vy: -10, color: "red", controlar: perseguePC}));
 
 cena1.iniciar();
 
