@@ -31,7 +31,12 @@ export default class Sprite
             this.cena.mapa.SIZE);
     }
 
-    passo(dt)
+    controlar(dt)
+    {
+        
+    }
+
+    mover(dt)
     {
         this.x = this.x + this.vx * dt;
         this.y = this.y + this.vy * dt;
@@ -39,14 +44,20 @@ export default class Sprite
         this.my = Math.floor(this.y / this.cena.mapa.SIZE);
     }
 
+    passo(dt)
+    {
+        this.controlar(dt);
+        this.mover(dt);
+    }
+
     colidiumCom(outro)
     {
         return !(
-                (this.x - this.w / 2 > outro.x + outro.w / 2) ||
-                (this.x + this.w / 2 < outro.x - outro.w / 2) ||
-                (this.y - this.h / 2 > outro.y + outro.h / 2) ||
-                (this.y + this.h / 2 < outro.y - outro.h / 2)
-            );
+            (this.x - this.w / 2 > outro.x + outro.w / 2) ||
+            (this.x + this.w / 2 < outro.x - outro.w / 2) ||
+            (this.y - this.h / 2 > outro.y + outro.h / 2) ||
+            (this.y + this.h / 2 < outro.y - outro.h / 2)
+        );
     }
 
     aplicaRestricoes(dt)
@@ -152,12 +163,12 @@ export default class Sprite
         {
             if (this.cena.mapa.titles[pmy][pmx] !== 0)
             {
-                const title ={
-                        x: pmx * SIZE + SIZE / 2,
-                        y: pmy * SIZE + SIZE / 2,
-                        w: SIZE,
-                        h: SIZE
-                    };
+                const title = {
+                    x: pmx * SIZE + SIZE / 2,
+                    y: pmy * SIZE + SIZE / 2,
+                    w: SIZE,
+                    h: SIZE
+                };
                 this.cena.ctx.strokeStyle = "white";
                 this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
                 if (this.colidiumCom(title))
