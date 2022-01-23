@@ -1,6 +1,8 @@
+import Sprite from "./Sprite.js";
+
 export default class Cena
 {
-    constructor(canvas, assets = null)
+    constructor(canvas, assets = null, mapa = null)
     {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
@@ -10,14 +12,15 @@ export default class Cena
         this.dt = 0;
         this.idAnim = null;
         this.assets = assets;
-        this.mapa = null;
+        this.configuraMapa(mapa)
     }
+
 
     desenhar()
     {
         this.ctx.fillStyle = "lightcyan";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.mapa?.desenhar(this.ctx);
+        this.mapa?.desenhar(this.ctx, this.assets);
 
         if (this.assets.acabou())
         {
@@ -51,6 +54,7 @@ export default class Cena
 
     quadro(t)
     {
+        const that = this;
         this.t0 = this.t0 ?? t;
         this.dt = (t - this.t0) / 1000;
 
@@ -87,6 +91,7 @@ export default class Cena
                 const spriteB = this.sprites[b];
                 if (spriteA.colidiumCom(spriteB))
                 {
+                    this.assets.play("colision");
                     this.quandoColidir(spriteA, spriteB);
                 }
             }
@@ -103,6 +108,7 @@ export default class Cena
         {
             this.aRemover.push(b);
         }
+
         console.log(this.aRemover);
     }
 
@@ -123,6 +129,26 @@ export default class Cena
     {
         this.mapa = mapa;
         this.mapa.cena = this;
+    }
+
+    criaInimigo()
+    {
+        const that = this;
+
+        console.log("tessssssssssssssssssste");
+        let rl = 0, rc = 0;
+        while (that.mapa.titles[rl][rc] !== 0)
+        {
+            rl = Math.floor(Math.random() * (16 - 1) + 1);
+            rc = Math.floor(Math.random() * (20 - 1) + 1);
+        }
+        const en1 = new Sprite({
+            x: rc * 32 + 32 / 2,
+            y: rl * 32 + 32 / 2,
+            color: "red"
+        });
+        that.adicionar(en1);
+        setTimeout(that.criaInimigo, 10000);
 
     }
 }

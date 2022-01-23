@@ -39,6 +39,8 @@ input.configurarTeclado(
 
 const mapa1 = new Mapa(16, 20, 32);
 mapa1.carregaMapa(modeloMapa1);
+
+const cena1 = new Cena(canvas, assets, mapa1);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({x: 50, vx: 10});

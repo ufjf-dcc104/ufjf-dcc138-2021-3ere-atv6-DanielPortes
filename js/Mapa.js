@@ -14,10 +14,11 @@ export default class Mapa
                 this.titles[l][c] = 0;
             }
         }
+        this.mapa = null;
         this.cena = null;
     }
 
-    desenhar(ctx)
+    desenhar(ctx, assets)
     {
         for (let l = 0; l < this.LINHAS; l++)
         {
@@ -25,24 +26,16 @@ export default class Mapa
             {
                 switch (this.titles[l][c])
                 {
-                    case 1:
-                        ctx.fillStyle = "grey";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "black";
+                    case 0:
+                        ctx.drawImage(assets.img('glass'), 32 * c, 32 * l, 32, 32);
                         break;
-                    case 2:
-                        ctx.fillStyle = "darkgreen";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "orange";
+                    case 1:
+                        ctx.drawImage(assets.img("wall"), 32 * c, 32 * l, 32, 32);
                         break;
                     default:
-                        ctx.fillStyle = "black";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "grey";
+                        ctx.drawImage(assets.img("floor"), 32 * c, 32 * l, 32, 32);
+                        break;
                 }
-                ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-                ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-
             }
 
 
