@@ -12,8 +12,16 @@ const assets = new AssetManager(mixer);
 
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto", "assets/skelly.png");
+assets.carregaImagem("fire", "assets/fire.png");
+assets.carregaImagem("floor", "assets/floor.png");
 assets.carregaImagem("orc", "assets/orc.png");
+assets.carregaImagem("eye", "assets/eye.png");
+assets.carregaImagem("wall", "assets/wall.png");
+assets.carregaImagem("wall2", "assets/wall2.png");
+assets.carregaImagem("glass", "assets/glass.png");
+
 assets.carregaAudio("moeda", "assets/coin.wav");
+assets.carregaAudio("colision", "assets/colision.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
@@ -29,10 +37,7 @@ input.configurarTeclado(
     }
 );
 
-
-const cena1 = new Cena(canvas, assets);
-
-const mapa1 = new Mapa(10, 14, 32);
+const mapa1 = new Mapa(16, 20, 32);
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
 
@@ -68,6 +73,22 @@ function perseguePC(dt)
     this.vx = 25 * Math.sign(pc.x - this.x);
     this.vy = 25 * Math.sign(pc.y - this.y);
 }
+
+criaInimigo();
+
+function criaInimigo()
+{
+    let rl = 0, rc = 0;
+    while (mapa1.titles[rl][rc] !== 0)
+    {
+        rl = Math.floor(Math.random() * (mapa1.LINHAS - 1 + 1) + 1);
+        rc = Math.floor(Math.random() * (mapa1.COLUNAS - 1 + 1) + 1);
+    }
+
+    cena1.adicionar(new Sprite({x: rc * 32 + 32 / 2, y: rl * 32 + 32 / 2, color: "red", controlar: perseguePC,}));
+    setTimeout(criaInimigo, 10000);
+}
+
 
 const en1 = new Sprite({x: 360, y: 300, vx: -10, color: "red", controlar: perseguePC});
 cena1.adicionar(en1);
