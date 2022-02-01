@@ -77,27 +77,50 @@ function perseguePC(dt)
     this.vy = 25 * Math.sign(pc.y - this.y);
 }
 
+
+function geraNumeroRandomico(min, max)
+{
+    return Math.floor(Math.random() * (max - min + min) + min);
+}
+
 criaInimigo();
 
 function criaInimigo()
 {
-    let rl = 0, rc = 0;
-    while (mapa1.titles[rl][rc] !== 0)
-    {
-        rl = Math.floor(Math.random() * (mapa1.LINHAS - 1 + 1) + 1);
-        rc = Math.floor(Math.random() * (mapa1.COLUNAS - 1 + 1) + 1);
-    }
+    let posicoes = geraPosicaoValida();
 
-    cena1.adicionar(new Sprite({x: rc * 32 + 32 / 2, y: rl * 32 + 32 / 2, color: "red", controlar: perseguePC,}));
+    cena1.adicionar(new Sprite({
+        x: posicoes[1], y: posicoes[0], color: "red", controlar: perseguePC,
+    }));
     setTimeout(criaInimigo, 10000);
 }
 
+function geraPosicaoValida()
+{
+    let rl = 0, rc = 0;
+    do
+    {
+        rl = geraNumeroRandomico(1, mapa1.LINHAS);
+        rc = geraNumeroRandomico(1, mapa1.COLUNAS);
+    } while (mapa1.titles[rl][rc] !== 0)
 
-const en1 = new Sprite({x: 360, y: 300, vx: -10, color: "red", controlar: perseguePC});
-cena1.adicionar(en1);
-cena1.adicionar(new Sprite({x: 550, y: 400, vy: 10, color: "red", controlar: perseguePC}));
-cena1.adicionar(new Sprite({x: 555, y: 160, vy: -10, color: "red", controlar: perseguePC}));
-cena1.adicionar(new Sprite({x: 200, y: 450, vy: -10, color: "red", controlar: perseguePC}));
+    return [rl * 32 + 32 / 2, rc * 32 + 32 / 2];
+}
+
+//
+// const en1 = new Sprite({
+//     x: geraPosicaoValida()[0], y: geraPosicaoValida()[1], vx: -10, color: "red", controlar: perseguePC
+// });
+// cena1.adicionar(en1);
+// cena1.adicionar(new Sprite({
+//     x: geraPosicaoValida()[0], y: geraPosicaoValida()[1], vy: 10, color: "red", controlar: perseguePC
+// }));
+// cena1.adicionar(new Sprite({
+//     x: geraPosicaoValida()[0], y: geraPosicaoValida()[1], vy: -10, color: "red", controlar: perseguePC
+// }));
+// cena1.adicionar(new Sprite({
+//     x: geraPosicaoValida()[0], y: geraPosicaoValida()[1], vy: -10, color: "red", controlar: perseguePC
+// }));
 
 cena1.iniciar();
 
