@@ -85,9 +85,9 @@ export default class Sprite
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx > 0)
         {
-            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            if (this.cena.mapa.tiles[pmy][pmx] !== 0)
             {
-                const title =
+                const tile =
                     {
                         x: pmx * SIZE + SIZE / 2,
                         y: pmy * SIZE + SIZE / 2,
@@ -95,11 +95,11 @@ export default class Sprite
                         h: SIZE
                     };
                 this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
-                if (this.colidiumCom(title))
+                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(tile))
                 {
                     this.vx = 0;
-                    this.x = title.x - title.w / 2 - this.w / 2 - 1
+                    this.x = tile.x - tile.w / 2 - this.w / 2 - 1
                 }
             }
 
@@ -112,9 +112,9 @@ export default class Sprite
         const SIZE = this.cena.mapa.SIZE;
         if (this.vx < 0)
         {
-            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            if (this.cena.mapa.tiles[pmy][pmx] !== 0)
             {
-                const title =
+                const tile =
                     {
                         x: pmx * SIZE + SIZE / 2,
                         y: pmy * SIZE + SIZE / 2,
@@ -122,11 +122,11 @@ export default class Sprite
                         h: SIZE
                     };
                 this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
-                if (this.colidiumCom(title))
+                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(tile))
                 {
                     this.vx = 0;
-                    this.x = title.x + title.w / 2 + this.w / 2 + 1
+                    this.x = tile.x + tile.w / 2 + this.w / 2 + 1
                 }
             }
 
@@ -138,9 +138,9 @@ export default class Sprite
         if (this.vy > 0)
         {
             const SIZE = this.cena.mapa.SIZE;
-            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            if (this.cena.mapa.tiles[pmy][pmx] !== 0)
             {
-                const title =
+                const tile =
                     {
                         x: pmx * SIZE + SIZE / 2,
                         y: pmy * SIZE + SIZE / 2,
@@ -148,11 +148,11 @@ export default class Sprite
                         h: SIZE
                     };
                 this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
-                if (this.colidiumCom(title))
+                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(tile))
                 {
                     this.vy = 0;
-                    this.y = title.y - title.h / 2 - this.h / 2 - 1
+                    this.y = tile.y - tile.h / 2 - this.h / 2 - 1
                 }
             }
 
@@ -164,20 +164,20 @@ export default class Sprite
         const SIZE = this.cena.mapa.SIZE;
         if (this.vy < 0)
         {
-            if (this.cena.mapa.titles[pmy][pmx] !== 0)
+            if (this.cena.mapa.tiles[pmy][pmx] !== 0)
             {
-                const title = {
+                const tile = {
                     x: pmx * SIZE + SIZE / 2,
                     y: pmy * SIZE + SIZE / 2,
                     w: SIZE,
                     h: SIZE
                 };
                 this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(title.x - SIZE / 2, title.y - SIZE / 2, SIZE, SIZE);
-                if (this.colidiumCom(title))
+                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+                if (this.colidiumCom(tile))
                 {
                     this.vy = 0;
-                    this.y = title.y + title.h / 2 + this.h / 2 - 1
+                    this.y = tile.y + tile.h / 2 + this.h / 2 - 1
                 }
             }
 

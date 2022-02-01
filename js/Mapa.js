@@ -46,7 +46,7 @@ export default class Mapa
     {
         this.LINHAS = modelo.length;
         this.COLUNAS = modelo[0]?.length ?? 0;
-        this.titles = []
+        this.tiles = []
         for (let l = 0; l < this.LINHAS; l++)
         {
             this.tiles[l] = [];

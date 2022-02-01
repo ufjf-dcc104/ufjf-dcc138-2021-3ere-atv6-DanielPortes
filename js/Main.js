@@ -103,7 +103,7 @@ function geraPosicaoValida()
     {
         rl = geraNumeroRandomico(1, mapa1.LINHAS);
         rc = geraNumeroRandomico(1, mapa1.COLUNAS);
-    } while (mapa1.titles[rl][rc] !== 0)
+    } while (mapa1.tiles[rl][rc] !== 0)
 
     return [rl * 32 + 32 / 2, rc * 32 + 32 / 2];
 }
