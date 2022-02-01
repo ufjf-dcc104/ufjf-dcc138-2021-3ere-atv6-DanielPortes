@@ -5,6 +5,7 @@ import Mixer from "./Mixer.js";
 import Mapa from "./Mapa.js";
 import modeloMapa1 from "../maps/mapa1.js";
 import InputManager from "./InputManager.js";
+import Game from "./Game.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -28,20 +29,16 @@ const canvas = document.querySelector("canvas");
 canvas.width = 20 * 32;
 canvas.height = 16 * 32;
 
-input.configurarTeclado(
-    {
-        "ArrowLeft": "MOVE_ESQUERDA",
-        "ArrowRight": "MOVE_DIREITA",
-        "ArrowUp": "MOVE_CIMA",
-        "ArrowDown": "MOVE_BAIXO",
-    }
-);
+input.configurarTeclado({
+    "ArrowLeft": "MOVE_ESQUERDA", "ArrowRight": "MOVE_DIREITA", "ArrowUp": "MOVE_CIMA", "ArrowDown": "MOVE_BAIXO",
+});
+const game = new Game(canvas, assets, input);
 
 const mapa1 = new Mapa(16, 20, 32);
 mapa1.carregaMapa(modeloMapa1);
 
 const cena1 = new Cena(canvas, assets, mapa1);
-
+game.adicionarCena("jogo", cena1);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({x: 50, vx: 10});
