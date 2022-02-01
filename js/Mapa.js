@@ -5,13 +5,13 @@ export default class Mapa
         this.LINHAS = linhas;
         this.COLUNAS = colunas;
         this.SIZE = tamanho;
-        this.titles = [];
+        this.tiles = [];
         for (let l = 0; l < this.LINHAS; l++)
         {
-            this.titles[l] = [];
+            this.tiles[l] = [];
             for (let c = 0; c < this.COLUNAS; c++)
             {
-                this.titles[l][c] = 0;
+                this.tiles[l][c] = 0;
             }
         }
         this.mapa = null;
@@ -24,7 +24,7 @@ export default class Mapa
         {
             for (let c = 0; c < this.COLUNAS; c++)
             {
-                switch (this.titles[l][c])
+                switch (this.tiles[l][c])
                 {
                     case 0:
                         ctx.drawImage(assets.img('glass'), 32 * c, 32 * l, 32, 32);
@@ -46,13 +46,13 @@ export default class Mapa
     {
         this.LINHAS = modelo.length;
         this.COLUNAS = modelo[0]?.length ?? 0;
-        this.title = []
+        this.titles = []
         for (let l = 0; l < this.LINHAS; l++)
         {
-            this.titles[l] = [];
+            this.tiles[l] = [];
             for (let c = 0; c < this.COLUNAS; c++)
             {
-                this.titles[l][c] = modelo[l][c];
+                this.tiles[l][c] = modelo[l][c];
             }
         }
     }
