@@ -28,7 +28,7 @@ export default class Game
         {
             this.parar();
             this.cena = this.cenas.get(chave);
-            this.preparar();
+            this.cena.preparar();
             this.iniciar();
         }
 

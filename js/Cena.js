@@ -2,21 +2,14 @@ import Sprite from "./Sprite.js";
 
 export default class Cena
 {
-    constructor(canvas = null, assets = null, mapa = null)
+    constructor(canvas = null, assets = null)
     {
         this.canvas = canvas;
         this.ctx = canvas?.getContext("2d");
         this.assets = assets;
-        this.sprites = [];
-        this.aRemover = [];
-        this.t0 = null;
-        this.dt = 0;
-        this.idAnim = null;
         this.game = null;
-        this.rodando = true;
-        this.configuraMapa(mapa)
+        this.preparar();
     }
-
 
     desenhar()
     {
@@ -74,6 +67,7 @@ export default class Cena
 
     iniciar()
     {
+        this.rodando = true;
         this.idAnim = requestAnimationFrame((t) =>
         {
             this.quadro(t);
@@ -82,6 +76,7 @@ export default class Cena
 
     parar()
     {
+        this.rodando = false;
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
@@ -149,12 +144,21 @@ export default class Cena
             rc = Math.floor(Math.random() * (20 - 1) + 1);
         }
         const en1 = new Sprite({
-            x: rc * 32 + 32 / 2,
-            y: rl * 32 + 32 / 2,
-            color: "red"
+            x: rc * 32 + 32 / 2, y: rl * 32 + 32 / 2, color: "red"
         });
         that.adicionar(en1);
         setTimeout(that.criaInimigo, 10000);
+    }
+
+    preparar()
+    {
+        this.sprites = [];
+        this.aRemover = [];
+        this.t0 = null;
+        this.dt = 0;
+        this.idAnim = null;
+        this.mapa = null;
+        this.rodando = true;
     }
 
 }
