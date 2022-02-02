@@ -32,7 +32,12 @@ canvas.width = 20 * 32;
 canvas.height = 16 * 32;
 
 input.configurarTeclado({
-    "ArrowLeft": "MOVE_ESQUERDA", "ArrowRight": "MOVE_DIREITA", "ArrowUp": "MOVE_CIMA", "ArrowDown": "MOVE_BAIXO",
+    "ArrowLeft": "MOVE_ESQUERDA",
+    "ArrowRight": "MOVE_DIREITA",
+    "ArrowUp": "MOVE_CIMA",
+    "ArrowDown": "MOVE_BAIXO",
+    " ": "PROXIMA_CENA",
+
 });
 const game = new Game(canvas, assets, input);
 
