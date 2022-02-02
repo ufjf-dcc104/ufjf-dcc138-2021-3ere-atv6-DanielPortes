@@ -139,7 +139,7 @@ export default class Cena
 
         console.log("tessssssssssssssssssste");
         let rl = 0, rc = 0;
-        while (that.mapa.titles[rl][rc] !== 0)
+        while (that.mapa.tiles[rl][rc] !== 0)
         {
             rl = Math.floor(Math.random() * (16 - 1) + 1);
             rc = Math.floor(Math.random() * (20 - 1) + 1);
