@@ -27,6 +27,7 @@ export default class Cena
             }
         }
         this.ctx.fillStyle = "yellow";
+        this.ctx.textAlign = "left";
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
     }
 
