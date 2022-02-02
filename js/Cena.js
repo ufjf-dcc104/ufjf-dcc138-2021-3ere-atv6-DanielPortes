@@ -2,18 +2,18 @@ import Sprite from "./Sprite.js";
 
 export default class Cena
 {
-    constructor(canvas, assets = null, mapa = null)
+    constructor(canvas = null, assets = null, mapa = null)
     {
         this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
+        this.ctx = canvas?.getContext("2d");
+        this.assets = assets;
         this.sprites = [];
         this.aRemover = [];
         this.t0 = null;
         this.dt = 0;
         this.idAnim = null;
-        this.assets = assets;
         this.game = null;
-
+        this.rodando = true;
         this.configuraMapa(mapa)
     }
 
@@ -64,7 +64,11 @@ export default class Cena
         this.desenhar();
         this.checaColisao();
         this.removerSprites();
-        this.iniciar();
+        if (this.rodando)
+        {
+            this.iniciar();
+        }
+
         this.t0 = t;
     }
 
@@ -151,6 +155,6 @@ export default class Cena
         });
         that.adicionar(en1);
         setTimeout(that.criaInimigo, 10000);
-
     }
+
 }

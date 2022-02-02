@@ -8,6 +8,7 @@ import InputManager from "./InputManager.js";
 import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js";
 import CenaCarragando from "./CenaCarragando.js";
+import CenaFim from "./CenaFim.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -46,11 +47,14 @@ mapa1.carregaMapa(modeloMapa1);
 
 const cena0 = new CenaCarragando(canvas, assets, mapa1);
 const cena1 = new CenaJogo(canvas, assets, mapa1);
+const cena2 = new CenaFim(canvas, assets, mapa1);
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
+game.adicionarCena("fim", cena2);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({x: 50, vx: 10});
+pc.tags.add("pc");
 pc.controlar = function (dt)
 {
     if (input.comandos.get("MOVE_ESQUERDA"))
@@ -96,7 +100,8 @@ function criaInimigo()
     let posicoes = geraPosicaoValida();
 
     cena1.adicionar(new Sprite({
-        x: posicoes[1], y: posicoes[0], color: "red", controlar: perseguePC,
+        x: posicoes[1], y: posicoes[0], color: "red",
+        controlar: perseguePC, tags: ["enemy"]
     }));
     setTimeout(criaInimigo, 10000);
 }
