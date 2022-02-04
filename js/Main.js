@@ -1,7 +1,3 @@
-import Cena from "./Cena.js";
-import Sprite from "./Sprite.js";
-import Mapa from "./Mapa.js";
-import modeloMapa1 from "../maps/mapa1.js";
 import AssetManager from "./AssetManager.js";
 import Mixer from "./Mixer.js";
 import InputManager from "./InputManager.js";
@@ -30,13 +26,11 @@ assets.carregaAudio("boom", "assets/boom.wav");
 
 const canvas = document.querySelector("canvas");
 canvas.width = 20 * 32;
-canvas.height = 16 * 32;
+canvas.height = 22 * 32;
 
 input.configurarTeclado({
     "ArrowLeft": "MOVE_ESQUERDA",
     "ArrowRight": "MOVE_DIREITA",
-    "ArrowUp": "MOVE_CIMA",
-    "ArrowDown": "MOVE_BAIXO",
     "Enter": "PROXIMA_CENA",
 
 });
