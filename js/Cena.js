@@ -91,7 +91,7 @@ export default class Cena
             for (let b = a + 1; b < this.sprites.length; b++)
             {
                 const spriteB = this.sprites[b];
-                if (spriteA.colidiumCom(spriteB))
+                if (spriteA.colidiuCom(spriteB))
                 {
                     this.assets.play("colision");
                     this.quandoColidir(spriteA, spriteB);
