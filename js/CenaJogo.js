@@ -44,9 +44,10 @@ export default class CenaJogo extends Cena
             {
                 this.vx = 0;
             }
-            if (cena.input.comandos.get("ATIRAR"))
+            if (cena.input.comandos.get("ATIRA"))
             {
-                this.atirar(this.x + 20, this.y);
+                this.atirar(this.x, this.y);
+                cena.input.comandos.set("ATIRA", false);
             }
 
         };

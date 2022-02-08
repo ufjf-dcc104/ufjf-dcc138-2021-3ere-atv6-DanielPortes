@@ -32,7 +32,7 @@ input.configurarTeclado({
     "ArrowLeft": "MOVE_ESQUERDA",
     "ArrowRight": "MOVE_DIREITA",
     "Enter": "PROXIMA_CENA",
-
+    " ": "ATIRA",
 });
 const game = new Game(canvas, assets, input);
 
