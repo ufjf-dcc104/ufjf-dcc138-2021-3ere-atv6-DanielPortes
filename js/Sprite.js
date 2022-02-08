@@ -202,4 +202,12 @@ export default class Sprite
         }
     }
 
+    atirar(x, y)
+    {
+        const projetil = new Sprite({
+            x: x, y: y, vy: -300, w: 5, h: 3, color: "black", tags: ["projetilPC"],
+        });
+        this.cena.adicionar(projetil);
+    }
+
 }
