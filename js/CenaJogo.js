@@ -53,17 +53,22 @@ export default class CenaJogo extends Cena
         };
         this.adicionar(pc);
 
-        function perseguePC(dt)
+
+        for (let i = 100; i < 500; i += i + 50)
         {
-            this.vx = 25 * Math.sign(pc.x - this.x);
-            this.vy = 25 * Math.sign(pc.y - this.y);
+            for (let j = 100; j < 500; j += j + 50)
+            {
+                this.adicionar(new Sprite({
+                    x: j, y: i, vx: 100, color: "red", tags: ["enemy"],
+                }));
+            }
         }
 
-        /*        const en1 = new Sprite({
-                    x: 100, y: 100, vx: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
-                });
-                // this.adicionar(en1);
-
+        // const en1 = new Sprite({
+        //     x: 100, y: 100, vx: 100, color: "red", controlar: perseguePC, tags: ["enemy"],
+        // });
+        // this.adicionar(en1);
+        /*
                 this.adicionar(new Sprite({
                     x: 200, y: 150, vy: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
                 }));
@@ -72,7 +77,8 @@ export default class CenaJogo extends Cena
                 }));
                 this.adicionar(new Sprite({
                     x: 100, y: 250, vy: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
-                }));*/
+                }));
+            */
 
     }
 };
