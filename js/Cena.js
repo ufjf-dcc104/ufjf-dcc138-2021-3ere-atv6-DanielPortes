@@ -54,9 +54,9 @@ export default class Cena
         this.t0 = this.t0 ?? t;
         this.dt = (t - this.t0) / 1000;
 
+        this.checaColisao();
         this.passo(this.dt);
         this.desenhar();
-        this.checaColisao();
         this.removerSprites();
         if (this.rodando)
         {
@@ -102,6 +102,7 @@ export default class Cena
 
     quandoColidir(a, b)
     {
+
         if (!this.aRemover.includes(a))
         {
             this.aRemover.push(a);
