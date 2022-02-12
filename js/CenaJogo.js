@@ -54,12 +54,12 @@ export default class CenaJogo extends Cena
         this.adicionar(pc);
 
 
-        for (let i = 64; i < 300; i += 30)
+        for (let i = 2; i < 10; i++)
         {
-            for (let j = 64; j < 400; j += 64)
+            for (let j = 2; j < 10; j++)
             {
                 this.adicionar(new Sprite({
-                    x: j, y: i, vx: 100, color: "red", tags: ["enemy"],
+                    x: (j * 64), y: (i * 32), vx: 100, color: "red", tags: ["enemy"],
                 }));
             }
         }
