@@ -19,6 +19,10 @@ export default class CenaJogo extends Cena
         {
             this.game.selecionaCena("fim");
         }
+        if (a.tags.has("pc") && b.tags.has("bomba"))
+        {
+            this.game.selecionaCena("fim");
+        }
     }
 
     preparar()
