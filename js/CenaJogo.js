@@ -57,6 +57,7 @@ export default class CenaJogo extends Cena
         };
         this.adicionar(pc);
 
+        let enemys = [];
 
         for (let i = 2; i < 10; i++)
         {
@@ -64,32 +65,32 @@ export default class CenaJogo extends Cena
             {
                 if (i === 4)
                 {
-                    this.adicionar(new Sprite({
-                        x: (j * 64), y: (i * 32), vx: 100, color: "blue", tags: ["enemy"],
-                    }));
+                    let enemy = new Sprite({
+                        x: (j * 64), y: (i * 32), vx: 100, vy: +5, color: "blue", tags: ["enemy"],
+                    })
+                    cena.adicionar(enemy);
+                    enemys.push(enemy);
                     continue;
                 }
                 this.adicionar(new Sprite({
-                    x: (j * 64), y: (i * 32), vx: 100, color: "red", tags: ["enemy"],
+                    x: (j * 64), y: (i * 32), vx: 100, vy: +5, color: "red", tags: ["enemy"],
                 }));
             }
         }
 
-        // const en1 = new Sprite({
-        //     x: 100, y: 100, vx: 100, color: "red", controlar: perseguePC, tags: ["enemy"],
-        // });
-        // this.adicionar(en1);
-        /*
-                this.adicionar(new Sprite({
-                    x: 200, y: 150, vy: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
-                }));
-                this.adicionar(new Sprite({
-                    x: 300, y: 100, vy: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
-                }));
-                this.adicionar(new Sprite({
-                    x: 100, y: 250, vy: 10, color: "red", controlar: perseguePC, tags: ["enemy"],
-                }));
-            */
+        var rot = function ()
+        {
+            for (const eny of enemys)
+            {
+                const bomba = new Sprite({
+                    x: eny.x, y: eny.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
+                });
+                cena.adicionar(bomba);
+            }
+            setTimeout(rot, 10000);
+        }
+
+        rot();
 
     }
 };
