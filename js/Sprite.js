@@ -90,9 +90,9 @@ export default class Sprite
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my - 1);
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my);
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my + 1);
-        this.aplicaRestricoesBaixo(this.mx - 1, this.my + 1);
+        // this.aplicaRestricoesBaixo(this.mx - 1, this.my + 1);
+        // this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx, this.my + 1);
-        this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
     }
 
     aplicaRestricoesDireita(pmx, pmy)
@@ -159,8 +159,12 @@ export default class Sprite
     aplicaRestricoesBaixo(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE
-        if (pmy > 21 || pmx > 21)
+        if (pmy > 20 || pmx > 20)
         {
+            if (this.tags.has("enemy"))
+            {
+                this.cena.game.selecionaCena("fim");
+            }
             this.cena.aRemover.push(this);
             return;
         }
