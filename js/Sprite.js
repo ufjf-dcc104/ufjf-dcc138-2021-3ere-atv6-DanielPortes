@@ -117,6 +117,7 @@ export default class Sprite
                         if (sprite.tags.has("enemy"))
                         {
                             sprite.vx = -100;
+                            sprite.vy += 2;
                         }
                     }
                     this.x = tile.x - tile.w / 2 - this.w / 2 - 1
@@ -148,6 +149,7 @@ export default class Sprite
                         if (sprite.tags.has("enemy"))
                         {
                             sprite.vx = 100;
+                            sprite.vy += 2;
                         }
                     }
                     this.x = tile.x + tile.w / 2 + this.w / 2 + 1
@@ -185,6 +187,7 @@ export default class Sprite
                     this.vy = 0
                     this.y = tile.y - tile.h / 2 - this.h / 2 - 1
                 }
+
             }
         }
     }
