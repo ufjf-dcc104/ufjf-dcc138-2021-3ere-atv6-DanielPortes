@@ -33,7 +33,6 @@ export default class InputManager
             {
                 that.comandos.set(comando, false);
             }
-
         })
     }
 }
