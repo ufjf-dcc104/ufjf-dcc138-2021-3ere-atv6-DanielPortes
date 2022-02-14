@@ -5,8 +5,22 @@ import Sprite from "./Sprite.js";
 
 export default class CenaJogo extends Cena
 {
+    constructor()
+    {
+        super();
+        this.enemys = [];
+    }
+
     quandoColidir(a, b)
     {
+        if (b.tags.has("projetilPC") && a.tags.has("special"))
+        {
+            console.log("here");
+            console.log(this.enemys.length);
+            const idx = this.enemys.indexOf(a);
+            // console.log(idx);
+            this.enemys.splice(idx, 1);
+        }
         if (!this.aRemover.includes(a))
         {
             this.aRemover.push(a);
@@ -23,6 +37,7 @@ export default class CenaJogo extends Cena
         {
             this.game.selecionaCena("fim");
         }
+
     }
 
     preparar()
@@ -57,8 +72,7 @@ export default class CenaJogo extends Cena
         };
         this.adicionar(pc);
 
-        let enemys = [];
-
+        let aux = [];
         for (let i = 2; i < 10; i++)
         {
             for (let j = 2; j < 10; j++)
@@ -66,31 +80,37 @@ export default class CenaJogo extends Cena
                 if (i === 4)
                 {
                     let enemy = new Sprite({
-                        x: (j * 64), y: (i * 32), vx: 100, vy: +5, color: "blue", tags: ["enemy"],
+                        x: (j * 64), y: (i * 32), vx: 100, vy: +8, color: "blue", tags: ["enemy", "special"],
                     })
                     cena.adicionar(enemy);
-                    enemys.push(enemy);
+                    aux.push(enemy);
                     continue;
                 }
                 this.adicionar(new Sprite({
-                    x: (j * 64), y: (i * 32), vx: 100, vy: +5, color: "red", tags: ["enemy"],
+                    x: (j * 64), y: (i * 32), vx: 100, vy: +8, color: "red", tags: ["enemy"],
                 }));
             }
         }
 
-        var rot = function ()
+        this.enemys = [];
+        for (const auxKey of aux)
         {
-            for (const eny of enemys)
+            this.enemys.push(auxKey);
+        }
+
+        const that = this;
+        var soltarBomba = function ()
+        {
+            for (const enemysKey of that.enemys)
             {
                 const bomba = new Sprite({
-                    x: eny.x, y: eny.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
+                    x: enemysKey.x, y: enemysKey.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
                 });
                 cena.adicionar(bomba);
             }
-            setTimeout(rot, 10000);
+            setTimeout(soltarBomba, 10000);
         }
 
-        rot();
-
+        soltarBomba();
     }
 };
