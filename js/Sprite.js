@@ -24,6 +24,7 @@ export default class Sprite
         {
             this.tags.add(tag);
         });
+        this.aux = false;
 
     }
 
@@ -62,7 +63,14 @@ export default class Sprite
     {
         if (this.tags?.has("pc") && outro.tags?.has("projetilPC"))
         {return false;}
-
+        if (this.tags?.has("enemy") && outro.tags?.has("bomba"))
+        {
+            return false;
+        }
+        if (this.tags?.has("bomba") && outro.tags?.has("bomba"))
+        {
+            return false;
+        }
         return !(
             (this.x - this.w / 2 > outro.x + outro.w / 2) ||
             (this.x + this.w / 2 < outro.x - outro.w / 2) ||
@@ -86,7 +94,6 @@ export default class Sprite
         this.aplicaRestricoesBaixo(this.mx, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
     }
-
 
     aplicaRestricoesDireita(pmx, pmy)
     {
@@ -114,10 +121,10 @@ export default class Sprite
                     }
                     this.x = tile.x - tile.w / 2 - this.w / 2 - 1
                 }
+
             }
         }
     }
-
 
     aplicaRestricoesEsquerda(pmx, pmy)
     {
@@ -152,6 +159,11 @@ export default class Sprite
     aplicaRestricoesBaixo(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE
+        if (pmy > 21 || pmx > 21)
+        {
+            this.cena.aRemover.push(this);
+            return;
+        }
         if (this.vy > 0)
         {
             if (this.cena.mapa.tiles[pmy][pmx] !== 0)
@@ -176,7 +188,7 @@ export default class Sprite
     aplicaRestricoesCima(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE
-        if (pmy < 0 || pmx < 0)
+        if (pmy <= 0 || pmx < 0)
         {
             this.cena.aRemover.push(this);
             return;
