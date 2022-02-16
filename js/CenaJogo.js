@@ -13,20 +13,23 @@ export default class CenaJogo extends Cena
 
     quandoColidir(a, b)
     {
-        if (b.tags.has("projetilPC") && a.tags.has("special"))
-        {
-            console.log("here");
-            console.log(this.enemys.length);
-            const idx = this.enemys.indexOf(a);
-            // console.log(idx);
-            this.enemys.splice(idx, 1);
-        }
+
         if (!this.aRemover.includes(a))
         {
+            if (a.tags.has("enemy"))
+            {
+                const idx = this.enemys.indexOf(a);
+                this.enemys.splice(idx, 1);
+            }
             this.aRemover.push(a);
         }
         if (!this.aRemover.includes(b))
         {
+            if (b.tags.has("enemy"))
+            {
+                const idx = this.enemys.indexOf(b);
+                this.enemys.splice(idx, 1);
+            }
             this.aRemover.push(b);
         }
         if (a.tags.has("pc") && b.tags.has("enemy"))
@@ -50,6 +53,7 @@ export default class CenaJogo extends Cena
 
         const pc = new Sprite({x: 300, y: 600, vx: 1000});
         pc.tags.add("pc");
+        this.pc = pc;
         const cena = this;
         pc.controlar = function (dt)
         {
@@ -73,22 +77,26 @@ export default class CenaJogo extends Cena
         this.adicionar(pc);
 
         let aux = [];
-        for (let i = 2; i < 10; i++)
+        for (let i = 2; i <= 2 * (this.dificuldade); i++)
         {
-            for (let j = 2; j < 10; j++)
+            for (let j = 2; j <= 2 * (this.dificuldade); j++)
             {
-                if (i === 4)
+                if (i === 2)
                 {
                     let enemy = new Sprite({
-                        x: (j * 64), y: (i * 32), vx: 100, vy: +8, color: "blue", tags: ["enemy", "special"],
-                    })
+                        x: (j * 64), y: (i * 32), vx: 100, vy: +2, color: "blue", tags: ["enemy", "special"],
+                    });
+
                     cena.adicionar(enemy);
                     aux.push(enemy);
                     continue;
                 }
-                this.adicionar(new Sprite({
-                    x: (j * 64), y: (i * 32), vx: 100, vy: +8, color: "red", tags: ["enemy"],
-                }));
+                let enemy = new Sprite({
+                    x: (j * 64), y: (i * 32), vx: 100, vy: +0, color: "red", tags: ["enemy"],
+
+                });
+                cena.adicionar(enemy);
+                aux.push(enemy);
             }
         }
 
@@ -103,10 +111,14 @@ export default class CenaJogo extends Cena
         {
             for (const enemysKey of that.enemys)
             {
-                const bomba = new Sprite({
-                    x: enemysKey.x, y: enemysKey.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
-                });
-                cena.adicionar(bomba);
+                if (enemysKey.tags.has("special"))
+                {
+
+                    const bomba = new Sprite({
+                        x: enemysKey.x, y: enemysKey.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
+                    });
+                    cena.adicionar(bomba);
+                }
             }
             setTimeout(soltarBomba, 10000);
         }
