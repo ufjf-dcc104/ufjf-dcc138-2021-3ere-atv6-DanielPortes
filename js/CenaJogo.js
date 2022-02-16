@@ -9,6 +9,7 @@ export default class CenaJogo extends Cena
     {
         super();
         this.enemys = [];
+        this.pc = null;
     }
 
     quandoColidir(a, b)
