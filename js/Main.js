@@ -18,6 +18,9 @@ assets.carregaImagem("orc", "assets/orc.png");
 assets.carregaImagem("eye", "assets/eye.png");
 assets.carregaImagem("wall", "assets/wall.png");
 assets.carregaImagem("wall2", "assets/wall2.png");
+assets.carregaImagem("invaders", "assets/invaders.png");
+assets.carregaImagem("skull", "assets/skull2.png");
+assets.carregaImagem("doguinho", "assets/doguinho.png");
 assets.carregaImagem("glass", "assets/glass.png");
 
 assets.carregaAudio("moeda", "assets/coin.wav");

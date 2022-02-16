@@ -30,19 +30,22 @@ export default class Sprite
 
     desenhar(ctx)
     {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
-        ctx.strokeStyle = "blue";
-        ctx.strokeRect(
-            this.mx * this.cena.mapa.SIZE,
-            this.my * this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE);
-    }
+        if (this.tags.has("special"))
+        {
+            ctx.drawImage(assets.img("eye"), this.x, this.y, 32, 32);
+        } else if (this.tags.has("enemy"))
+        {
+            ctx.drawImage(assets.img("skull"), this.x, this.y, 32, 32);
 
-    controlar(dt)
-    {
+        } else if (this.tags.has("pc"))
+        {
+            ctx.drawImage(assets.img("doguinho"), this.x, this.y, 32, 32);
 
+        } else
+        {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
+        }
     }
 
     mover(dt)
