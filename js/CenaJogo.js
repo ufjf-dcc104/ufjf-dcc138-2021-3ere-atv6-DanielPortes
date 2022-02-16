@@ -40,6 +40,12 @@ export default class CenaJogo extends Cena
         {
             this.game.selecionaCena("fim");
         }
+        if (this.enemys.length === 0)
+        {
+            console.log("vitoria");
+            this.game.selecionaCena("vitoria");
+        }
+        
 
     }
 
