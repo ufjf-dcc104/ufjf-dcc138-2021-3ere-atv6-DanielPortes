@@ -5,6 +5,7 @@ import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js";
 import CenaCarragando from "./CenaCarragando.js";
 import CenaFim from "./CenaFim.js";
+import CenaVitoria from "./CenaVitoria.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -42,9 +43,11 @@ const game = new Game(canvas, assets, input);
 const cena0 = new CenaCarragando(canvas, assets);
 const cena1 = new CenaJogo(canvas, assets);
 const cena2 = new CenaFim(canvas, assets);
+const cena3 = new CenaVitoria(canvas, assets);
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
 game.adicionarCena("fim", cena2);
+game.adicionarCena("vitoria", cena3);
 
 game.iniciar();
 
