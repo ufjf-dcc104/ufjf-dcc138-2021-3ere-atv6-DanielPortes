@@ -24,11 +24,14 @@ export default class Sprite
         {
             this.tags.add(tag);
         });
-        this.aux = false;
+    }
+
+    controlar(dt)
+    {
 
     }
 
-    desenhar(ctx)
+    desenhar(ctx, assets)
     {
         if (this.tags.has("special"))
         {
@@ -110,7 +113,7 @@ export default class Sprite
                         if (sprite.tags.has("enemy"))
                         {
                             sprite.vx = -100;
-                            sprite.vy += 2;
+                            sprite.vy += 1;
                         }
                     }
                     this.x = tile.x - tile.w / 2 - this.w / 2 - 1
@@ -142,7 +145,7 @@ export default class Sprite
                         if (sprite.tags.has("enemy"))
                         {
                             sprite.vx = 100;
-                            sprite.vy += 2;
+                            sprite.vy += 1;
                         }
                     }
                     this.x = tile.x + tile.w / 2 + this.w / 2 + 1
