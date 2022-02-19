@@ -27,9 +27,10 @@ export default class Game
         if (this.cenas.has(chave))
         {
             this.parar();
-            this.cena = this.cenas.get(chave);
-            this.cena.preparar();
-            if (chave === "jogo")
+            if (this.cena === "fim")
+            {
+                this.cena.dificuldade -= 1;
+            } else
             {
                 this.cena.dificuldade += 1;
                 if (this.cena.dificuldade === 5)
@@ -37,6 +38,8 @@ export default class Game
                     this.cena.dificuldade = 1;
                 }
             }
+            this.cena = this.cenas.get(chave);
+            this.cena.preparar();
             console.log(this.cena.dificuldade);
             this.iniciar();
         }
