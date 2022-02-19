@@ -9,7 +9,6 @@ export default class CenaJogo extends Cena
     constructor()
     {
         super();
-        this.enemys = [];
         this.pc = null;
         this.cooldown = 0;
     }
@@ -88,7 +87,7 @@ export default class CenaJogo extends Cena
     preparar()
     {
         super.preparar();
-
+        this.enemys = [];
         const mapa1 = new Mapa(22, 20, 32);
         mapa1.carregaMapa(modeloMapa1);
         this.configuraMapa(mapa1);
@@ -128,9 +127,8 @@ export default class CenaJogo extends Cena
                     let enemy = new Sprite({
                         x: (j * 64), y: (i * 32), vx: 100, vy: +2, color: "blue", tags: ["enemy", "special"],
                     });
-
+                    this.enemys.push(enemy);
                     cena.adicionar(enemy);
-                    aux.push(enemy);
                     continue;
                 }
                 let enemy = new Sprite({
@@ -138,15 +136,11 @@ export default class CenaJogo extends Cena
 
                 });
                 cena.adicionar(enemy);
-                aux.push(enemy);
+                this.enemys.push(enemy);
             }
         }
 
-        this.enemys = [];
-        for (const auxKey of aux)
-        {
-            this.enemys.push(auxKey);
-        }
+    }
 
     soltarBomba()
     {
