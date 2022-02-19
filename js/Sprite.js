@@ -164,15 +164,7 @@ export default class Sprite
     aplicaRestricoesBaixo(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE
-        if (pmy > 20 || pmx > 20)
-        {
-            if (this.tags.has("enemy"))
-            {
-                this.cena.game.selecionaCena("fim");
-            }
-            this.cena.aRemover.push(this);
-            return;
-        }
+
         if (this.vy > 0)
         {
             if (this.cena.mapa.tiles[pmy][pmx] !== 0)
@@ -198,11 +190,7 @@ export default class Sprite
     aplicaRestricoesCima(pmx, pmy)
     {
         const SIZE = this.cena.mapa.SIZE
-        if (pmy <= 0 || pmx < 0)
-        {
-            this.cena.aRemover.push(this);
-            return;
-        }
+
         if (this.vy < 0)
         {
             if (this.cena.mapa.tiles[pmy][pmx] !== 0)

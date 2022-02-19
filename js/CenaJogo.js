@@ -2,6 +2,7 @@ import Cena from "./Cena.js";
 import Mapa from "./Mapa.js";
 import modeloMapa1 from "../maps/mapa1.js";
 import Sprite from "./Sprite.js";
+import Bomba from "./Bomba.js";
 
 export default class CenaJogo extends Cena
 {
@@ -10,6 +11,24 @@ export default class CenaJogo extends Cena
         super();
         this.enemys = [];
         this.pc = null;
+        this.cooldown = 0;
+    }
+
+    passo(dt)
+    {
+        if (!this.assets.acabou())
+        {
+            return;
+        }
+        for (const sprite of this.sprites)
+        {
+            sprite.passo(dt);
+        }
+        this.cooldown += this.dt;
+        if (this.cooldown >= 2)
+        {
+            this.soltarBomba();
+        }
     }
 
     quandoColidir(a, b)
@@ -113,23 +132,20 @@ export default class CenaJogo extends Cena
             this.enemys.push(auxKey);
         }
 
-        const that = this;
-        var soltarBomba = function ()
+    soltarBomba()
+    {
+        for (const enemy of this.enemys)
         {
-            for (const enemysKey of that.enemys)
+            if (enemy.tags.has("special"))
             {
-                if (enemysKey.tags.has("special"))
-                {
-
-                    const bomba = new Sprite({
-                        x: enemysKey.x, y: enemysKey.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
-                    });
-                    cena.adicionar(bomba);
-                }
+                const bomba = new Bomba({
+                    x: enemy.x, y: enemy.y + 100, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
+                });
+                this.adicionar(bomba);
             }
-            setTimeout(soltarBomba, 10000);
         }
 
-        soltarBomba();
+        this.cooldown = 0;
     }
+
 };
