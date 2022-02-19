@@ -33,39 +33,55 @@ export default class CenaJogo extends Cena
 
     quandoColidir(a, b)
     {
-
-        if (!this.aRemover.includes(a))
+        if (a.tags.has("bomba") && b.tags.has("bomba"))
         {
-            if (a.tags.has("enemy"))
-            {
-                const idx = this.enemys.indexOf(a);
-                this.enemys.splice(idx, 1);
-            }
-            this.aRemover.push(a);
+            return;
         }
-        if (!this.aRemover.includes(b))
+        if (a.tags.has("enemy") && b.tags.has("bomba"))
         {
-            if (b.tags.has("enemy"))
-            {
-                const idx = this.enemys.indexOf(b);
-                this.enemys.splice(idx, 1);
-            }
-            this.aRemover.push(b);
+            return;
         }
-        if (a.tags.has("pc") && b.tags.has("enemy"))
+        if (a.tags.has("enemy") && b.tags.has("enemy"))
         {
-            this.game.selecionaCena("fim");
+            return;
         }
-        if (a.tags.has("pc") && b.tags.has("bomba"))
-        {
-            this.game.selecionaCena("fim");
-        }
-        if (this.enemys.length === 0)
-        {
-            console.log("vitoria");
-            this.game.selecionaCena("vitoria");
-        }
-        
+        //
+        // if (!this.aRemover.includes(a))
+        // {
+        //     if (a.tags.has("enemy"))
+        //     {
+        //         const idx = this.enemys.indexOf(a);
+        //         this.enemys.splice(idx, 1);
+        //     }
+        //     this.aRemover.push(a);
+        // }
+        // if (!this.aRemover.includes(b))
+        // {
+        //     if (b.tags.has("enemy"))
+        //     {
+        //         const idx = this.enemys.indexOf(b);
+        //         this.enemys.splice(idx, 1);
+        //     }
+        //     this.aRemover.push(b);
+        // }
+        // if (a.tags.has("pc") && b.tags.has("enemy"))
+        // {
+        //     this.game.selecionaCena("fim");
+        // }
+        // if (a.tags.has("pc") && b.tags.has("bomba"))
+        // {
+        //     this.game.selecionaCena("fim");
+        // }
+        // if (this.enemys.length === 0)
+        // {
+        //     console.log("vitoria");
+        //     this.game.selecionaCena("vitoria");
+        // }
+        //
+        // if (this.enemys.length % 5 === 0) // habilidade special
+        // {
+        //     this.pc.habilidadeEspecial = true;
+        // }
 
     }
 

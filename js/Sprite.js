@@ -64,16 +64,6 @@ export default class Sprite
 
     colidiuCom(outro)
     {
-        if (this.tags?.has("pc") && outro.tags?.has("projetilPC"))
-        {return false;}
-        if (this.tags?.has("enemy") && outro.tags?.has("bomba"))
-        {
-            return false;
-        }
-        if (this.tags?.has("bomba") && outro.tags?.has("bomba"))
-        {
-            return false;
-        }
         return !(
             (this.x - this.w / 2 > outro.x + outro.w / 2) ||
             (this.x + this.w / 2 < outro.x - outro.w / 2) ||
