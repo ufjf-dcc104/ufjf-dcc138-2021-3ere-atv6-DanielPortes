@@ -32,6 +32,7 @@ export default class CenaJogo extends Cena
 
     quandoColidir(a, b)
     {
+
         if (a.tags.has("bomba") && b.tags.has("bomba"))
         {
             return;
@@ -99,9 +100,10 @@ export default class CenaJogo extends Cena
             {
                 this.vx = 0;
             }
-            if (cena.input.comandos.get("ATIRA")) {
+            if (cena.input.comandos.get("ATIRA"))
+            {
                 const bomba = new Bomba({
-                    x: this.x, y: this.y, vy: -300, w: 5, h: 5, color: "black", tags: ["bomba"],
+                    x: this.x, y: this.y, vy: -300, w: 5, h: 5, color: "black", tags: ["projetil"],
                 });
                 cena.adicionar(bomba);
                 cena.input.comandos.set("ATIRA", false);
@@ -142,7 +144,7 @@ export default class CenaJogo extends Cena
             if (enemy.tags.has("special"))
             {
                 const bomba = new Bomba({
-                    x: enemy.x, y: enemy.y + 100, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
+                    x: enemy.x, y: enemy.y, vy: +100, w: 5, h: 5, color: "white", tags: ["bomba"],
                 });
                 this.adicionar(bomba);
             }
