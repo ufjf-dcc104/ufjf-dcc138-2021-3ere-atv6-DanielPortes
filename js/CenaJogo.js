@@ -39,6 +39,10 @@ export default class CenaJogo extends Cena
         {
             return;
         }
+        if (a.tags.has("projetil") && b.tags.has("projetil"))
+        {
+            return;
+        }
         if (a.tags.has("enemy") && b.tags.has("bomba"))
         {
             return;
