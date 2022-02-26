@@ -94,7 +94,6 @@ export default class Cena
                 const spriteB = this.sprites[b];
                 if (spriteA.colidiuCom(spriteB))
                 {
-                    this.assets.play("colision");
                     this.quandoColidir(spriteA, spriteB);
                 }
             }
@@ -113,7 +112,6 @@ export default class Cena
             this.aRemover.push(b);
         }
 
-        console.log(this.aRemover);
     }
 
     removerSprites()
