@@ -6,6 +6,7 @@ import CenaJogo from "./CenaJogo.js";
 import CenaCarragando from "./CenaCarragando.js";
 import CenaFim from "./CenaFim.js";
 import CenaVitoria from "./CenaVitoria.js";
+import CenaZeramento from "./CenaZeramento.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -25,8 +26,10 @@ assets.carregaImagem("doguinho", "assets/doguinho.png");
 assets.carregaImagem("glass", "assets/glass.png");
 
 assets.carregaAudio("moeda", "assets/coin.wav");
-assets.carregaAudio("colision", "assets/colision.wav");
-assets.carregaAudio("boom", "assets/boom.wav");
+assets.carregaAudio("lowpitch", "assets/lowpitch.wav");
+assets.carregaAudio("colision", "assets/boom.wav");
+assets.carregaAudio("shoot", "assets/shoot.wav");
+assets.carregaAudio("invaderkilled", "assets/invaderkilled.wav");
 
 const canvas = document.querySelector("canvas");
 canvas.width = 20 * 32;
@@ -44,10 +47,12 @@ const cena0 = new CenaCarragando(canvas, assets);
 const cena1 = new CenaJogo(canvas, assets);
 const cena2 = new CenaFim(canvas, assets);
 const cena3 = new CenaVitoria(canvas, assets);
+const cena4 = new CenaZeramento(canvas, assets);
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
 game.adicionarCena("fim", cena2);
 game.adicionarCena("vitoria", cena3);
+game.adicionarCena("zeramento", cena4);
 
 game.iniciar();
 
@@ -61,8 +66,7 @@ document.addEventListener("keydown", (e) =>
         case "S":
             game.parar();
             break;
-        case "c":
-            assets.play("moeda");
+        case " ":
             break;
         case "b":
             assets.play("boom");
