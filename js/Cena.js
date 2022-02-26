@@ -139,7 +139,6 @@ export default class Cena
     {
         const that = this;
 
-        console.log("tessssssssssssssssssste");
         let rl = 0, rc = 0;
         while (that.mapa.tiles[rl][rc] !== 0)
         {
