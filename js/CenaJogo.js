@@ -168,7 +168,6 @@ export default class CenaJogo extends Cena
         };
         this.adicionar(pc);
 
-        let aux = [];
         for (let i = 2; i <= 2 * (this.dificuldade); i++)
         {
             for (let j = 2; j <= 2 * (this.dificuldade); j++)
@@ -176,7 +175,12 @@ export default class CenaJogo extends Cena
                 if (i === 2)
                 {
                     let enemy = new Sprite({
-                        x: (j * 64), y: (i * 32), vx: 100, vy: +2, color: "blue", tags: ["enemy", "special"],
+                        x: (j * 64),
+                        y: (i * 32),
+                        vx: 65 * (this.dificuldade),
+                        vy: 0,
+                        color: "blue",
+                        tags: ["enemy", "special"],
                     });
                     this.enemys.push(enemy);
                     cena.adicionar(enemy);
