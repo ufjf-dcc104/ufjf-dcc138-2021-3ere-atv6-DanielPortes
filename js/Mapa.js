@@ -32,8 +32,11 @@ export default class Mapa
                     case 1:
                         ctx.drawImage(assets.img("wall"), 32 * c, 32 * l, 32, 32);
                         break;
+                    case 2:
+                        ctx.drawImage(assets.img("wall2"), 32 * c, 32 * l, 32, 32);
+                        break;
                     default:
-                        ctx.drawImage(assets.img("floor"), 32 * c, 32 * l, 32, 32);
+                        ctx.drawImage(assets.img("fire"), 32 * c, 32 * l, 32, 32);
                         break;
                 }
             }
