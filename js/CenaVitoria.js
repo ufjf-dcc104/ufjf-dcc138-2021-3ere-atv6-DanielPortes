@@ -14,7 +14,7 @@ export default class CenaFim extends Cena
         if (this.dificuldade === 4)
         {
             this.ctx.fillStyle = "yellow";
-            this.ctx.fillText("Jogo finalizado! De volta ao comeco", this.canvas.width / 2, this.canvas.height / 2 + 60);
+            this.ctx.fillText("Nivel finalizado! Aumento de dificuldade", this.canvas.width / 2, this.canvas.height / 2 + 60);
         }
         if (this.assets.acabou())
         {
