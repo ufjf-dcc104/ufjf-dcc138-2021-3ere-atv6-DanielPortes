@@ -23,10 +23,12 @@ export default class CenaJogo extends Cena
         {
             sprite.passo(dt);
         }
+
         this.cooldown += this.dt;
-        if (this.cooldown >= 2)
+        if (this.cooldown >= 3)
         {
             this.soltarBomba();
+            this.cooldown = 0;
         }
     }
 
@@ -149,8 +151,18 @@ export default class CenaJogo extends Cena
                 this.adicionar(bomba);
             }
         }
-
-        this.cooldown = 0;
+        var temp = [];
+        for (const enemy of this.enemys)
+        {
+            if (enemy.tags.has("special"))
+            {
+                temp.push(enemy);
+            }
+        }
+        if (temp.length !== 0)
+        {
+            this.assets.play("lowpitch");
+        }
     }
 
 };
