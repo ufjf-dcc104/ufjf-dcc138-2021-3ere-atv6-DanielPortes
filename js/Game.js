@@ -19,7 +19,9 @@ export default class Game
         cena.assets = this.assets;
         cena.input = this.input;
         if (this.cena === null)
-        {this.cena = cena;}
+        {
+            this.cena = cena;
+        }
     }
 
     selecionaCena(chave)
@@ -27,12 +29,23 @@ export default class Game
         if (this.cenas.has(chave))
         {
             this.parar();
+            // this.avancaDificuldade();
             this.cena = this.cenas.get(chave);
             this.cena.preparar();
-            console.log(this.cena.dificuldade);
             this.iniciar();
         }
+    }
 
+    // todo: atualmente ja funciona, mas ideia para futuro: ainda falta decidir como controlar a chamada da cena zeramento sem aumentar a complexidade do codigo
+    avancaDificuldade()
+    {
+        if (this.cena.enemys?.length === 0)
+        {
+            this.cena.dificuldade += 1;
+        } else if (this.cena.enemys?.length !== 0)
+        {
+            this.cena.dificuldade -= 1;
+        }
     }
 
     iniciar()
