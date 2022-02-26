@@ -116,6 +116,8 @@ export default class CenaJogo extends Cena
         pc.tags.add("pc");
         this.pc = pc;
         const cena = this;
+        cena.cooldownAtirar = 0;
+        cena.cooldownEspecial = 0;
         pc.controlar = function (dt)
         {
             if (cena.input.comandos.get("MOVE_ESQUERDA"))
@@ -128,13 +130,39 @@ export default class CenaJogo extends Cena
             {
                 this.vx = 0;
             }
-            if (cena.input.comandos.get("ATIRA"))
+            cena.cooldownAtirar += cena.dt;
+            cena.cooldownEspecial += cena.dt;
+            if (cena.input.comandos.get("ATIRA") && cena.cooldownAtirar >= .3) // tiro de habilidade especial
             {
+                cena.assets.play("shoot");
+                if (cena.cooldownEspecial >= 1)
+                {
+                    for (let i = 0; i < 3; i++)
+                    {
+                        const bomba = new Bomba({
+                            x: this.x + (20 * (i)),
+                            y: this.y - 18,
+                            vy: -300,
+                            w: 5,
+                            h: 5,
+                            color: "yellow",
+                            tags: ["projetil"],
+                        });
+                        cena.adicionar(bomba);
+                    }
+                    cena.cooldownAtirar = 0;
+                    cena.cooldownEspecial = 0;
+                    return;
+                }
+
                 const bomba = new Bomba({
                     x: this.x, y: this.y, vy: -300, w: 5, h: 5, color: "black", tags: ["projetil"],
                 });
                 cena.adicionar(bomba);
                 cena.input.comandos.set("ATIRA", false);
+                cena.cooldownAtirar = 0;
+
+
             }
 
         };
