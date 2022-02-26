@@ -10,11 +10,11 @@ export default class CenaCarragando extends Cena
         // this.mapa?.desenhar(this.ctx, this.assets);
         this.ctx.fillStyle = "yellow";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(this.assets?.progresso(), this.canvas.width / 2, this.canvas.height / 2);
+        this.ctx.fillText(this.assets?.progresso(), this.canvas.width / 2, 50);
         if (this.assets.acabou())
         {
-            this.ctx.fillText("Aperte enter para continuar", this.canvas.width / 2, this.canvas.height / 2 + 20);
-
+            this.ctx.fillText("Bem-vindo ao game!", this.canvas.width / 2, this.canvas.height / 2);
+            this.ctx.fillText("Aperte enter para continuar", this.canvas.width / 2, this.canvas.height / 2 + 25);
         }
     }
 
