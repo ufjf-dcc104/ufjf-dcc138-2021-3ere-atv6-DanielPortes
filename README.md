@@ -11,5 +11,12 @@ Espaco - atirar
 Setas - mover
 
 ### Fontes
-Audio: https://sfbgames.itch.io/chiptone
-Sprites: https://opengameart.org/content/lpc-tile-atlas
+Audio: 
+
+  https://sfbgames.itch.io/chiptone
+
+  https://www.classicgaming.cc/classics/space-invaders/sounds
+
+Sprites: 
+  
+  https://opengameart.org/content/lpc-tile-atlas
