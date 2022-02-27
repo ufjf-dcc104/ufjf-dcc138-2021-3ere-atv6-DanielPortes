@@ -71,7 +71,7 @@ export default class Sprite
     {
         return !(
             (this.x - this.w / 2 > outro.x + outro.w / 2) ||
-            (this.x - this.w / 2 > outro.x + outro.w / 2) ||
+            (this.x + this.w / 2 < outro.x - outro.w / 2) ||
             (this.y - this.h / 2 > outro.y + outro.h / 2) ||
             (this.y + this.h / 2 < outro.y - outro.h / 2)
         );

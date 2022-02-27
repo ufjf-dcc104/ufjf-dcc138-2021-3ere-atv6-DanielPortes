@@ -67,19 +67,6 @@ export default class CenaJogo extends Cena
                 this.aRemover.push(b);
             }
             this.aRemover.push(a);
-        } else if (!this.aRemover.includes(b))
-        {
-            if (b.tags.has("enemy"))
-            {
-                this.assets.play("invaderkilled");
-                const idx = this.enemys.indexOf(b);
-                this.enemys.splice(idx, 1);
-            }
-            if (b.tags.has("projetil"))
-            {
-                this.aRemover.push(a);
-            }
-            this.aRemover.push(b);
         }
         if (a.tags.has("pc") && b.tags.has("enemy"))  // jogador  morre
         {
